@@ -1,6 +1,5 @@
 import streamlit as st
 import google.generativeai as genai
-from langchain_google_genai import ChatGoogleGenerativeAI
 import os
 import json
 from dotenv import load_dotenv
@@ -10,7 +9,7 @@ load_dotenv()
 genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
 def get_gemini_response(input):
-    model=ChatGoogleGenerativeAI('gemini-pro', temperature=0.2)
+    model=genai.GenerativeModel('gemini-pro')
     response=model.generate_content(input)
     return response.text
 
